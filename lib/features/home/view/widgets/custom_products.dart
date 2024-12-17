@@ -1,76 +1,71 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:getx_task/core/constants/asset_constants.dart';
+import 'package:getx_task/core/constants/list_constants.dart';
 import 'package:getx_task/core/theme/app_pallete.dart';
-import 'package:getx_task/features/home/controller/home_controller.dart';
+import 'package:getx_task/core/variables/variables.dart';
 import 'package:getx_task/features/home/model/products_model.dart';
-import 'package:getx_task/features/home/view/pages/addorEdit_product.dart';
+import 'package:getx_task/features/home/view/pages/add_category.dart';
+import 'package:getx_task/features/home/view/pages/tasks_screen.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CustomUserCard extends StatelessWidget {
-  const CustomUserCard({super.key, required this.productModel, required this.index});
+  const CustomUserCard(
+      {super.key, required this.index, required this.categoryModel});
 
-  final ProductModel productModel;
   final int index;
+  final CategoryModel categoryModel;
 
   @override
   Widget build(BuildContext context) {
+    h = MediaQuery.of(context).size.height;
+    w = MediaQuery.of(context).size.width;
     return GestureDetector(
-      onTap: () {},
-      child: Container(
-          decoration: BoxDecoration(
-              color: Pallete.secondoryColor,
-              borderRadius: BorderRadius.circular(20)),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 6),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Name :  ${productModel.name}",
-                      style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w500,
-                          color: Pallete.whiteColor),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      "Age     :  ${productModel.price}",
-                      style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w500,
-                          color: Pallete.whiteColor),
-                    ),
-                  ],
-                ),
-                Column(
-                  children: [
-                    IconButton(
-                        onPressed: () {
-                          Get.to(() => ScreenAddEdit(
-                            index:index ,
-                                isEdit: true,
-                                productModel: productModel,
-                              ));
-                        },
-                        icon: const Icon(Icons.edit)),
-                    IconButton(
-                        onPressed: () {
-                          Get.put(HomeController()).updateProduct(
-                            index: index,
-                              productModel: productModel.copyWith(delete: true),
-                              isDelete: true);
-                        },
-                        icon: const Icon(Icons.delete)),
-                  ],
-                )
-              ],
-            ),
-          )),
-    );
+        onTap: () {
+          Get.to(() => CategoryPage(
+                inx: index,
+                categoryModel: categoryModel,
+              ));
+        },
+        child: Container(
+            decoration: BoxDecoration(
+                color: Pallete.whiteColor,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black
+                        .withOpacity(0.2), // Black shadow with opacity
+                    blurRadius: 2, // How blurry the shadow is
+                    offset:
+                        const Offset(1, 1), // Horizontal and vertical offset
+                  ),
+                ],
+                borderRadius: BorderRadius.circular(2)),
+            child: Padding(
+              padding:
+                  EdgeInsets.symmetric(horizontal: w * .03, vertical: h * .03),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text(
+                    ListConstants.emojiList[categoryModel.iconNumber],
+                    style: TextStyle(fontSize: w * .08),
+                  ),
+                  Text(
+                    categoryModel.name,
+                    style: GoogleFonts.poppins(
+                        fontWeight: FontWeight.bold,
+                        fontSize: w * .033,
+                        color: Colors.black),
+                  ),
+                  Text(
+                    "12 tasks",
+                    style: GoogleFonts.poppins(
+                        fontSize: w * .03, color: Colors.black),
+                  ),
+                ],
+              ),
+            )));
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:getx_task/core/theme/app_pallete.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton(
@@ -22,14 +22,15 @@ class CustomButton extends StatelessWidget {
         height: height,
         width: width,
         decoration: BoxDecoration(
-            color: Pallete.whiteColor, borderRadius: BorderRadius.circular(20)),
+            color: const Color(0xff003161),
+            borderRadius: BorderRadius.circular(20)),
         child: Center(
           child: Text(
             text,
-            style: const TextStyle(
+            style: GoogleFonts.poppins(
                 fontSize: 20,
                 fontWeight: FontWeight.w500,
-                color: Pallete.backgroundColor),
+                color: Pallete.whiteColor),
           ),
         ),
       ),

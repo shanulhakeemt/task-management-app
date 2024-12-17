@@ -5,16 +5,14 @@ class Pallete {
   static const greenColor = Colors.green;
   static const subtitleText = Color(0xffa7a7a7);
   static const inactiveBottomBarItemColor = Color(0xffababab);
+  static const secondoryColor = Color(0xff003161);
 
-  static const Color backgroundColor = Color.fromRGBO(18, 18, 18, 1);
-  static const Color gradient1 = Color(0xffA91D3A);
-    static const Color secondoryColor = Color(0xFF1D1E33);
-
-  static const Color gradient2 = Color(0xffC73659);
-  static const Color gradient3 = Color.fromRGBO(255, 159, 124, 1);
-  static const Color borderColor = Color.fromRGBO(52, 51, 67, 1);
+  static const Color backgroundColor = Color(0xffffffff);
+  static const Color blackColor = Color(0xff111111);
+  static const Color lightBlackColor = Colors.black54;
+  static Color borderColor = greyColor;
   static const Color whiteColor = Colors.white;
-  static const Color greyColor = Colors.grey;
+  static Color greyColor = Colors.grey.shade300;
   static const Color errorColor = Colors.redAccent;
   static const Color transparentColor = Colors.transparent;
 

@@ -12,7 +12,7 @@ class AuthButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Pallete.gradient1,
+        color: Pallete.blackColor,
         borderRadius: BorderRadius.circular(7),
       ),
       child: ElevatedButton(

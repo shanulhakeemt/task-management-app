@@ -89,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
                         TextSpan(
                             text: "Sign Up",
                             style: TextStyle(
-                                color: Pallete.gradient2,
+                                color: Pallete.blackColor,
                                 fontWeight: FontWeight.bold))
                       ]),
                 ),

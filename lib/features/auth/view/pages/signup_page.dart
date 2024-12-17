@@ -104,7 +104,7 @@ class _SignupPageState extends State<SignupPage> {
                         TextSpan(
                             text: "Sign In",
                             style: TextStyle(
-                                color: Pallete.gradient2,
+                                color: Pallete.blackColor,
                                 fontWeight: FontWeight.bold))
                       ])),
                 )

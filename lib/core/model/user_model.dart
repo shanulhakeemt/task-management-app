@@ -1,16 +1,22 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:convert';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:getx_task/features/home/model/products_model.dart';
 
 class UserModel {
   final String id;
   final String name;
   final String email;
   final String password;
+  final List<CategoryModel> categories;
+  final DocumentReference? reference;
   UserModel({
     required this.id,
     required this.name,
     required this.email,
     required this.password,
+    required this.categories,
+    this.reference,
   });
 
   UserModel copyWith({
@@ -18,12 +24,16 @@ class UserModel {
     String? name,
     String? email,
     String? password,
+    List<CategoryModel>? categories,
+    DocumentReference? reference,
   }) {
     return UserModel(
       id: id ?? this.id,
       name: name ?? this.name,
       email: email ?? this.email,
       password: password ?? this.password,
+      categories: categories ?? this.categories,
+      reference: reference ?? this.reference,
     );
   }
 
@@ -33,6 +43,8 @@ class UserModel {
       'name': name,
       'email': email,
       'password': password,
+      'categories': categories.map((x) => x.toMap()).toList(),
+      'reference': reference,
     };
   }
 
@@ -42,34 +54,12 @@ class UserModel {
       name: map['name'] as String,
       email: map['email'] as String,
       password: map['password'] as String,
+      categories: (map['categories'] as List)
+          .map(
+            (e) => CategoryModel.fromMap(e),
+          )
+          .toList(),
+      reference: map['reference'],
     );
-  }
-
-  String toJson() => json.encode(toMap());
-
-  factory UserModel.fromJson(String source) => UserModel.fromMap(json.decode(source) as Map<String, dynamic>);
-
-  @override
-  String toString() {
-    return 'UserModel(id: $id, name: $name, email: $email, password: $password)';
-  }
-
-  @override
-  bool operator ==(covariant UserModel other) {
-    if (identical(this, other)) return true;
-  
-    return 
-      other.id == id &&
-      other.name == name &&
-      other.email == email &&
-      other.password == password;
-  }
-
-  @override
-  int get hashCode {
-    return id.hashCode ^
-      name.hashCode ^
-      email.hashCode ^
-      password.hashCode;
   }
 }
